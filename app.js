@@ -14,7 +14,7 @@ const corsOptions = {
 };
 
 app.get("/", cors(corsOptions), (req, res, next) => {
-  const data = JSON.stringify("Hello world");
+  const data = JSON.stringify("Hello");
   res.set("Content-type", "text/json");
   res.send(data);
   next();
