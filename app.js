@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use("/static", express.static("public"));
 
-const port = process.env.port || 3000;
+const port = process.env.port || 8080;
 
 const corsOptions = {
   origin: "http://localhost:4000",
@@ -35,8 +35,10 @@ app.get("/users", cors(corsOptions), (req, res) => {
 //   }
 // });
 
-app.post("/user/:id", cors(corsOptions), (req, res) => {
+app.get("/user/:id", cors(corsOptions), (req, res) => {
   res.set("Content-type", "text/json");
+  const users = JSON.parse(fs.readFileSync("./users.json"));
+
   const user = users.some(user => user.id === req.params.id)
   res.set("Content-type", "application/json");
   res.send(user);
